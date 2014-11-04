@@ -18,8 +18,7 @@ class SortedListDoublyLinked
       DoubleNode<T>* locateNodeRemove(String* sk);
       DoubleNode<T>* locateNodeAdd(T* item);
 
-      DoubleNode<T>* addDN(T* item);
-      T* remove(DoubleNode<T>* curr);
+    
 
       DoubleNode<T>* findHead();
       DoubleNode<T>* findTail();
@@ -38,6 +37,9 @@ class SortedListDoublyLinked
       T* get(String* sk);
       void add(T* item);
       void remove(String* sk);
+	  
+	    DoubleNode<T>* addDN(T* item);
+      T* remove(DoubleNode<T>* curr);
 
       ListDoublyLinkedIterator<T>* iterator();
 
@@ -71,7 +73,6 @@ void SortedListDoublyLinked<T>::remove(String* sk)
 template < class T >
 T* SortedListDoublyLinked<T>::remove(DoubleNode<T>* curr)
 {
-
    //DO THIS (prev == NULL / after == NULL are special cases)
    //remember to set loc
 
@@ -79,33 +80,36 @@ T* SortedListDoublyLinked<T>::remove(DoubleNode<T>* curr)
 
    DoubleNode<T>* prev;
    DoubleNode<T>* after;
-	DoubleNode<T>* head = findHead();
-	prev->setPrev(curr);
-	after->setNext(curr);
-/*
-	if(prev == NULL)
-	{
-		prev = head;
-		loc = prev;
-	}
-	if else(after == NULL)
+   loc = curr;
+   item = curr->getItem();
+	prev = curr->getPrev();
+	after = curr->getNext();
+
+	if(sze == 1)
 	{
 		loc = NULL;
-		return NULL;
 	}
-	if else(curr == NULL)
+	else if(prev == NULL)
 	{
 		
-		return NULL;
+		after->setPrev(NULL);
+		loc = after;
+		
+		//item = curr->getItem();
+		
+	}
+	else if(after == NULL)
+	{
+		prev->setNext(NULL);
+		loc = prev;
+
 	}
 	else
 	{
-		item = curr;
-		item->setPrev(curr);
-		
-		delete curr;
+		prev->setNext(after);
+		after->setPrev(prev);
+		loc = after;
 	}
-*/
 
    sze--;
    delete curr;

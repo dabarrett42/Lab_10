@@ -23,7 +23,6 @@ class QueueLinked
       T* peek();
       T* dequeue();
       void enqueue(T* item);
-
 };
 
 template < class T >

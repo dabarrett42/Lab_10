@@ -2,7 +2,7 @@ AutomatedMakefile = am
 CC = g++
 
 FILES = HybridDriver.o
-EXECUTABLE = Hybrid.exe
+EXECUTABLE = H.exe
 
 PROJECT_PATH = $(PROJECT_DIR)
 
@@ -18,6 +18,6 @@ all: Project
 Project: 		$(FILES)
 			$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-HybridDriver.o: DoubleNode.h ListDoublyLinkedIterator.h SortedListDoublyLinked.h Hybrid.h HybridDriver.cpp
+HybridDriver.o:  SortedListDoublyLinked.h Hybrid.h HybridDriver.cpp
 				$(COMPILE) HybridDriver.cpp
 
